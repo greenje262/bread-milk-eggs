@@ -1,0 +1,220 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://sprites/igu_yel_walk0.png" type="Texture" id=1]
+[ext_resource path="res://sprites/igu_yel_walk1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/igu_yel_walk2.png" type="Texture" id=3]
+[ext_resource path="res://sprites/igu_yel_walk3.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=5]
+[ext_resource path="res://scripts/DialogueText.gd" type="Script" id=6]
+[ext_resource path="res://Schoolwork-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://sprites/grocery_bag.png" type="Texture" id=8]
+[ext_resource path="res://white.png" type="Texture" id=9]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 40.0
+height = 91.3816
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "bounce",
+"speed": 20.0
+} ]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="DynamicFont" id=4]
+size = 96
+font_data = ExtResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 1, 1, 1, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 100
+font_data = ExtResource( 7 )
+
+[sub_resource type="CanvasItemMaterial" id=8]
+light_mode = 1
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 2
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 39.5514, 6.189 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -151 )
+frames = SubResource( 2 )
+animation = "bounce"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 45.1899, -96.2964 )
+z_index = 1
+current = true
+zoom = Vector2( 2, 2 )
+
+[node name="DialogueBox" type="Control" parent="Camera2D"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1024.0
+margin_top = -600.0
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Camera2D/DialogueBox"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -1004.0
+margin_top = -380.0
+margin_right = 1004.0
+margin_bottom = -20.0
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/DialogueBox/Panel"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = -150.0
+margin_right = 330.0
+margin_bottom = 150.0
+texture = ExtResource( 1 )
+expand = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D/DialogueBox/Panel"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -1640.0
+margin_top = -150.0
+margin_right = -39.9999
+margin_bottom = 150.0
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "he he he..."
+text = "he he he..."
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoTalkTimer" type="Timer" parent="Camera2D/DialogueBox/Panel/RichTextLabel"]
+one_shot = true
+
+[node name="Timer" type="Timer" parent="Camera2D/DialogueBox/Panel"]
+wait_time = 0.05
+autostart = true
+
+[node name="ButtonBox" type="Control" parent="Camera2D/DialogueBox/Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -120.0
+margin_right = 300.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YesButton" type="Button" parent="Camera2D/DialogueBox/Panel/ButtonBox"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -39.0
+margin_right = 200.0
+margin_bottom = 39.0
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "yes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoButton" type="Button" parent="Camera2D/DialogueBox/Panel/ButtonBox"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -39.0
+margin_bottom = 39.0
+custom_styles/focus = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+text = "no"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D"]
+material = SubResource( 8 )
+margin_left = -1250.0
+margin_top = -625.0
+margin_right = 1250.0
+margin_bottom = 625.0
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeTween" type="Tween" parent="Camera2D/TextureRect"]
+
+[node name="Bag" type="Sprite" parent="."]
+visible = false
+position = Vector2( 165, -146 )
+texture = ExtResource( 8 )
+[connection signal="timeout" from="Camera2D/DialogueBox/Panel/Timer" to="Camera2D/DialogueBox/Panel/RichTextLabel" method="_on_Timer_timeout"]
+[connection signal="pressed" from="Camera2D/DialogueBox/Panel/ButtonBox/YesButton" to="Camera2D/DialogueBox/Panel/RichTextLabel" method="_on_YesButton_pressed"]
+[connection signal="pressed" from="Camera2D/DialogueBox/Panel/ButtonBox/NoButton" to="Camera2D/DialogueBox/Panel/RichTextLabel" method="_on_NoButton_pressed"]
+[connection signal="tween_completed" from="Camera2D/TextureRect/FadeTween" to="." method="_on_FadeTween_tween_completed"]

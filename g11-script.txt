@@ -1,0 +1,128 @@
+THE VIBE: the store music is bubbly, cheerful, cute. Everybody in the store knows each other, and will often bump into one another here. The PC is probably the youngest one in the store, though that doesn't really make too much of a difference.
+Some characters: a couple cashiers who gossip with one another while working, a worker or two restocking the shelves, a mom with some little kiddos, a bachelor trying to cook something new, your buddy from the astronomy club
+
+the two cashiers - one is a gallimimus, and the other is a t-rex who has a crush on Spike
+    Doc the gallimimus
+    <player has no groceries, first time>
+    > Morning, Spike! What brings you in?
+    < Hey Doc. Just grabbing some stuff for dinner.
+    > Nice. You having June over?
+    v Oh my god, Doc, shut up!
+    < No, not tonight. My parents are coming over.
+    > Oh, no kidding. Tell them I said hi, will you?
+    < For sure.
+
+    <no groceries, 2nd+ time>
+    > You let me know if you need anything, okay kiddo?
+    < Thanks, Doc.
+    
+    <if player has groceries>
+    > Okay, all set to check out?
+        <yes>
+        < Yeah, do you mind ringing me up?
+        > Not at all! Alright, let's see here... (begins checkout dialog)
+        <no>
+        < You know, I think there are a few more things I need to pick up.
+        > Sure, no problem. Let me know when you're ready.
+    
+    June the rex
+    <player has no groceries, first time>
+    > Oh, Spike! Good morning!
+    < Hey June! I didn't know you worked so early in the morning.
+    v She begged Gale to switch after I told her you do most of your shopping in the morning.
+    > DOC!! That's not true. See, I started taking classes in the afternoon, so working the morning is a lot easier for me now.
+    < Wow, you're taking classes too? That's really cool!
+    > O-Oh, is it? T-Thanks!
+    < Don't work yourself too hard, okay? If you ever need a break, let me know. I can come over and cook you dinner sometime.
+    > R-really? That...that sounds great. Thank you, Spike.
+
+    <no groceries, 2nd+ time>
+    > Hey! Are you- I mean, did you need anything?
+    < Nah, just saying hi.
+    > Oh! Okay. Then...hi!
+
+    <if player has groceries>
+    > All done? Want me to check you out?
+    > The groceries, I mean! Want me to ring up the groceries?
+        <yes>
+        < Sure, if you don't mind.
+        > Of course not! Okay, let's see here...
+        <no>
+        < Actually, not yet. There are a few more things I want to grab.
+        > Okay! I'll be right here when you're done.
+        > Not like waiting or anything! Just...I'll be here.
+
+one worker is an apatosaurus, the other is a triceratops
+
+the bachelor is a dimetrodon
+    <first time>
+    > Oh, hey Spike! How's it going?
+    < Legs! Not too bad. Just getting some dinner for tonight.
+    > Me too. Hey, can I ask you something?
+    < Yeah, definitely. What's up?
+    > I'm trying a new dish, and could use your input.
+    > Does [food 1] and [food 2] sound like it would go good together?
+        <yes>
+        < Yeah, definitely! I would eat that.
+        > Really? Cool, I thought it sounded good. Thanks for your help!
+        < Anytime.
+        <no>
+        < What? Legs, no, that sounds terrible.
+        > Yeah, I wasn't so sure about it myself. Thanks for your input! I'll have to try something else.
+    
+    <second time+>
+        <if yes, ever>
+        > Can't wait for dinner tonight. Thanks again for your help.
+        < It's the least I can do. Invite me over sometime!
+        > Definitely.
+        <if no before>
+        > Okay, I came up with a different meal plan. What about [food 1] and [food 2]?
+            <yes>
+            < Yeah, definitely! I would eat that.
+            > Really? Cool, I thought it sounded good. Thanks for your help!
+            < Anytime.
+            <no>
+            < What? Legs, no, that sounds terrible.
+            > Yeah, I wasn't so sure about it myself. Thanks for your input! I'll have to try something else.
+
+the astronomy club buddy is a stegosaurus
+    <first interaction>
+    < Whoa, Flower! Stocking up for the big boom?
+    > Oh, hey Spike. Is it a lot of food? It's for the astronomy club barbeque, but I'm not sure how much food I'm going to need.
+    > Do you think this is too much?
+        <yes>
+        < You might be overdoing a little bit. How many people are coming?
+        > I've got around twenty people who have RSVP'd.
+        < Hmmm...that is a lot, isn't it?
+        > Yeah...
+        < ...
+        > ...
+        < Well, more food can't be a bad thing, right? People can take leftovers home with them.
+        > That's true! Okay, I'll stick with what I've got. You're still coming, right?
+        < Wouldn't miss it!
+        > Great, great. See you then!
+        <no>
+        < Nah, that looks about right. Did you grab any zucchini? Gnasher loves that stuff.
+        > Yeah, he was quite...insistent about that.
+        < Sounds like him. Cool! This is going to be a blast.
+        > I hope so. The weather looks like it's going to cooperate, so we might even be able to spy Chicxulub!
+        < Is that the asteroid making its close approach soon?
+        > Yeah! It's really rare for an object like that to pass so close to us. I'm really excited!
+        < Fingers crossed the sky doesn't cloud up, then. Looking forward to it!
+        > Me too. Thanks, Spike.
+
+    <second+ interaction>
+        > Feel free to come over early to help cook. If you want to, I mean.
+        < That'd be fun. You sure I won't be in the way?
+        > Not at all! I'd love the company.
+
+the mom is an ankylosaurus, with little kiddo ankylosauruses bouncing around her
+
+
+DIALOGUE LOGIC
+    The player's collider overlaps with the dialogue area of an NPC - pressing interact emits a signal to begin the dialogue with the overlapping collider parent
+    Each NPC has a dialogue dictionary that feeds into a global dialogue script, referencing global variables
+    the dialogue dictionary index codes are loaded into an array of equal size to the dictionary
+    pressing spacebar +=1s the array index, until it reaches array size - 1, after which the dialogue ends, emitting a signal to close the box and raise the [npc]_interact variable by 1, so that the next time dialogue is initiated, a different conversation occurs
+    when it comes to a choice, player can choose yes or no (two buttons)
+    making this choice emits a signal, causing this dialogue function to run again after assessing the variable properly

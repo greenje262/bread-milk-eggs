@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/nowhere-land-by-kevin-macleod-from-filmmusic-io.ogg-4f5f15fb54ea129f501a25bab89b5759.oggstr"
+
+[deps]
+
+source_file="res://nowhere-land-by-kevin-macleod-from-filmmusic-io.ogg"
+dest_files=[ "res://.import/nowhere-land-by-kevin-macleod-from-filmmusic-io.ogg-4f5f15fb54ea129f501a25bab89b5759.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

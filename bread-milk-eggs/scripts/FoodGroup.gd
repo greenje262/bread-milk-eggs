@@ -1,0 +1,80 @@
+extends Node2D
+
+onready var food_dict = [
+	{"label": "acorn", "skin": load("res://food/Acorn.png")},
+	{"label": "apple", "skin": load("res://food/Apple.png")},
+	{"label": "avocado", "skin": load("res://food/Avacado.png")},
+	{"label": "bacon", "skin": load("res://food/Bacon.png")},
+	{"label": "berries", "skin": load("res://food/Berries0.png")},
+	{"label": "bun", "skin": load("res://food/BreadBun.png")},
+	{"label": "bread roll", "skin": load("res://food/BreadRoll.png")},
+	{"label": "breadstick", "skin": load("res://food/BreadStick.png")},
+	{"label": "brownie", "skin": load("res://food/Brownie.png")},
+	{"label": "cheese", "skin": load("res://food/Cheese.png")},
+	{"label": "cherry", "skin": load("res://food/Cherry.png")},
+	{"label": "chicken", "skin": load("res://food/Chicken.png")},
+	{"label": "drumstick", "skin": load("res://food/ChickenLeg.png")},
+	{"label": "cookie", "skin": load("res://food/Cookie.png")},
+	{"label": "date", "skin": load("res://food/Date.png")},
+	{"label": "dragonfruit", "skin": load("res://food/DragonFruit.png")},
+	{"label": "eggplant", "skin": load("res://food/Eggplant.png")},
+	{"label": "eggs", "skin": load("res://food/Eggs.png")},
+	{"label": "fig", "skin": load("res://food/Fig.png")},
+	{"label": "fish", "skin": load("res://food/Fish.png")},
+	{"label": "fish fillet", "skin": load("res://food/FishFillet.png")},
+	{"label": "fish steak", "skin": load("res://food/FishSteak.png")},
+	{"label": "rosemary", "skin": load("res://food/Herb1.png")},
+	{"label": "chive", "skin": load("res://food/Herb2.png")},
+	{"label": "spinach", "skin": load("res://food/Herb3.png")},
+	{"label": "dandelion", "skin": load("res://food/Herb4.png")},
+	{"label": "mint", "skin": load("res://food/Herb5.png")},
+	{"label": "honeycomb", "skin": load("res://food/Honeycomb.png")},
+	{"label": "honey", "skin": load("res://food/HoneyJar.png")},
+	{"label": "hot sauce", "skin": load("res://food/HotSauce.png")},
+	{"label": "jelly", "skin": load("res://food/Jam.png")},
+	{"label": "jerky", "skin": load("res://food/Jerky.png")},
+	{"label": "kiwi", "skin": load("res://food/Kiwi.png")},
+	{"label": "marmalade", "skin": load("res://food/Marmalade.png")},
+	{"label": "honeydew", "skin": load("res://food/MelonGreen.png")},
+	{"label": "cantaloupe", "skin": load("res://food/MelonOrange.png")},
+	{"label": "watermelon", "skin": load("res://food/MelonRed.png")},
+	{"label": "milk", "skin": load("res://food/MilkBottle.png")},
+	{"label": "olive", "skin": load("res://food/Olive.png")},
+	{"label": "onion", "skin": load("res://food/Onion.png")},
+	{"label": "peach", "skin": load("res://food/Peach.png")},
+	{"label": "green pepper", "skin": load("res://food/PepperGreen.png")},
+	{"label": "pepperoni", "skin": load("res://food/Pepperoni.png")},
+	{"label": "red pepper", "skin": load("res://food/PepperRed.png")},
+	{"label": "pickle", "skin": load("res://food/Pickle.png")},
+	{"label": "apple pie", "skin": load("res://food/PieApple.png")},
+	{"label": "lemon pie", "skin": load("res://food/PieLemon.png")},
+	{"label": "pumpkin pie", "skin": load("res://food/PiePumpkin.png")},
+	{"label": "pineapple", "skin": load("res://food/Pineapple.png")},
+	{"label": "potato", "skin": load("res://food/Potato.png")},
+	{"label": "red potato", "skin": load("res://food/PotatoRed.png")},
+	{"label": "pretzel", "skin": load("res://food/Pretzel.png")},
+	{"label": "sashimi", "skin": load("res://food/Sashimi.png")},
+	{"label": "sausage", "skin": load("res://food/Sausages.png")},
+	{"label": "shishkebab", "skin": load("res://food/ShishKabob.png")},
+	{"label": "shrimp", "skin": load("res://food/Shrimp.png")},
+	{"label": "steak", "skin": load("res://food/Steak.png")},
+	{"label": "strawberry", "skin": load("res://food/Strawberry.png")},
+	{"label": "sushi", "skin": load("res://food/Sushi.png")},
+	{"label": "tart", "skin": load("res://food/Tart.png")},
+	{"label": "tomato", "skin": load("res://food/Tomato.png")},
+	{"label": "turnip", "skin": load("res://food/Turnip.png")},
+	{"label": "waffles", "skin": load("res://food/Waffles.png")}
+]
+
+func _ready():
+	randomize()
+	
+	var nodes = [$Food, $Food2, $Food3, $Food4, $Food5, $Food6, $Food7, $Food8, $Food9, $Food10,
+				$Food11, $Food12, $Food13, $Food14, $Food15, $Food21, $Food22, $Food23, $Food24,
+				$Food25, $Food26, $Food27, $Food28, $Food29, $Food30, $Food31, $Food32, $Food33,
+				$Food34, $Food35]
+	
+	for node in nodes:
+		var food_pick = food_dict[randi() % food_dict.size()]
+		node.set_texture(food_pick.skin)
+		node.label = food_pick.label

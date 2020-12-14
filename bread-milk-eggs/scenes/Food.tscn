@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://food/Avacado.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Food.gd" type="Script" id=2]
+[ext_resource path="res://sprites/indicator.png" type="Texture" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 0.1
+height = 36.6938
+
+[sub_resource type="Animation" id=2]
+resource_name = "bounce"
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, -31 ), Vector2( 0, -34 ), Vector2( 0, -37 ), Vector2( 0, -38 ), Vector2( 0, -37 ), Vector2( 0, -34 ), Vector2( 0, -31 ), Vector2( 0, -30 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Indicator:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, -31 ), Vector2( 0, -34 ), Vector2( 0, -37 ), Vector2( 0, -38 ), Vector2( 0, -37 ), Vector2( 0, -34 ), Vector2( 0, -31 ), Vector2( 0, -30 ) ]
+}
+
+[node name="Food" type="Sprite"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -35.463 )
+script = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 0, -30 )
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 30.309 )
+shape = SubResource( 1 )
+
+[node name="Indicator" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, -35.463 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bounce = SubResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

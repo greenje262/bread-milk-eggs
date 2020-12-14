@@ -1,0 +1,69 @@
+[BREAD, EGGS, MILK]
+
+Core mechanic
+    Walk around a grocery store and interact with the dinosaurs inside
+
+Core gameplay loop
+    Walk up to a character, have a conversation, pick up groceries
+
+Intended player experience
+    Cute, quirky, charming
+    Lots of smiles and 'awww' moments
+
+Theme
+    Small-town dinosaur grocery store
+    Familiar, homey, cozy
+
+Primary features
+    Characters, player and NPC - dinosaur figures
+    Grocery store layout
+    Dialogue system and script
+    Interactable grocery items
+
+Secondary features
+    Title screen
+    Game finish screen
+    Music, grocery get effects
+
+Polish
+    Immersive dialogue (character barks, chirps, and bounces)
+    Side quests
+
+What do I need to learn?
+    How to use layers to get the PC to walk behind and in front of shelves
+    Implementing a dialog system in Godot
+    How to alter curves/levels in Krita
+
+Workflow
+    Photograph all dinosaur toys (take from one perspective, and blow up to make portraits? or do A Short Hike style dialogue?)
+    Draw grocery store layout on Remarkable
+    Plan NPCs and write script
+    Edit dinosaur photos and grocery store to make sprites, etc.
+    Build grocery store in Godot
+    Build player scene and program movement
+    Build NPCs
+    Build dialogue system
+    Build interactable grocery items and HUD
+    Hook up beginning and end scenes
+
+Other notes
+    walk cycle y-deltas: 30, 7, 4, 2, 0, -2, -4, -7, -30
+    Title screen features the PC hopping from left to right - title falls in behind them
+
+Credits
+
+Font:
+Schoolwork, by Forkssrose: https://www.dafont.com/schoolwork.font
+
+Music:
+Nowhere Land by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/4148-nowhere-land
+License: http://creativecommons.org/licenses/by/4.0/
+
+Food sprites:
+Pixel Item! asset pack by Henry Software
+https://henrysoftware.itch.io/pixel-item
+
+Game built by me in Godot engine
+
+Sprites and images made by me in Krita
